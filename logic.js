@@ -29,19 +29,7 @@ L.control.layers(baseMaps).addTo(map);
 // Here we make an AJAX call that retrieves our earthquake geoJSON data.
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson", function(data) {
 
-  // This function returns the style data for each of the earthquakes we plot on
-  // the map. We pass the magnitude of the earthquake into two separate functions
-  // to calculate the color and radius.
-  function styleInfo(feature) {
-    return {
-      fillOpacity: 0.75,
-      fillColor: "red",
-      color: "black",
-      radius: (feature.properties.mag)*4,
-    };
-  }
-
-    // Here we add a GeoJSON layer to the map once the file is loaded.
+  // Here we add a GeoJSON layer to the map once the file is loaded.
   L.geoJson(data, {
     // We turn each feature into a circleMarker on the map.
     pointToLayer: function(feature, latlng) {
@@ -57,6 +45,7 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
     }
   }).addTo(map);
 
+  // Style data for each of the earthquakes we plot on the map. 
   function styleInfo(feature) {
     return {
       fillOpacity: 0.75,
